@@ -1,0 +1,191 @@
+﻿
+<script src="~/Scripts/jquery-1.7.1.js"></script>
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Global Village</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<!--5grid--><script src="~/Content/5grid/viewport.js"></script><!--[if lt IE 9]><script src="~/Content/5grid/ie.js"></script><![endif]--><link rel="stylesheet" href="~/Content/5grid/core.css" />
+		<link rel="stylesheet" href="~/Content/style-1.css" />
+		<!--[if IE 9]><link rel="stylesheet" href="~/Content/style-ie9.css" /><![endif]-->
+	</head>
+	<body>
+	<!-- ********************************************************* -->
+		<div id="header-wrapper">
+			<div class="5grid">
+				<div class="12u-first">
+					
+					<header id="header">
+						<h1><a href="#">Global Village</a></h1>
+						<nav>
+							<a href= "/User/MainPage" >Home</a>
+							<a href="/User/Profile" >Profile</a>
+							<a href="/User/FindFriends">Find Friends</a>
+							<a href="/User/Logout">Logout</a>
+						</nav>
+					</header>
+				
+				</div>
+			</div>
+		</div>
+        <div id="banner-wrapper">
+			<div class="5grid">
+				<div class="12u-first">
+					
+					<div id="banner">
+						<h2>Welcome to Global Village!</h2>
+						<span>This is a friendship site! Enjoy free chatting and make New Friends. . . </span>
+					</div>
+				
+				</div>
+			</div>
+	    </div>
+            <div id="main">
+  		            <div class="5grid">
+				            <div class="main-row">
+					            <div class="8u-first">
+
+                                    <div class="container">
+                                        <h3>UserName:
+                                            <label id="userName" style="display: inline;">@Session["login"].ToString()</label>
+                                        </h3>
+                                    <textarea id="messageBox" style="margin-left:50px;margin-top:150px;width:550px;height:250px;resize:none
+                                        " placeholder="write a message here...." ></textarea>
+                                    </div>
+                                    </div>
+                                    <div class="4u">
+
+                                        <ul id="messageList" style="list-style: none; padding-left: 0px;">
+                                        </ul>
+                                    </div>
+                            </div>
+                      </div>
+              </div>
+                
+                                    
+        		<div id="footer-wrapper">
+			<div class="5grid">
+				<div class="8u-first">
+					
+					<section>
+						<h2>How about a truckload of links?</h2>
+						<div class="3u-first">
+							<ul class="link-list">
+								<li><a href="#">Sed neque nisi consequat</a></li>
+								<li><a href="#">Dapibus sed mattis blandit</a></li>
+								<li><a href="#">Quis accumsan lorem</a></li>
+								<li><a href="#">Suspendisse varius ipsum</a></li>
+								<li><a href="#">Eget et amet consequat</a></li>
+							</ul>
+						</div>
+						<div class="3u">
+							<ul class="link-list">
+								<li><a href="#">Quis accumsan lorem</a></li>
+								<li><a href="#">Sed neque nisi consequat</a></li>
+								<li><a href="#">Eget et amet consequat</a></li>
+								<li><a href="#">Dapibus sed mattis blandit</a></li>
+								<li><a href="#">Vitae magna sed dolore</a></li>
+							</ul>
+						</div>
+						<div class="3u">
+							<ul class="link-list">
+								<li><a href="#">Sed neque nisi consequat</a></li>
+								<li><a href="#">Dapibus sed mattis blandit</a></li>
+								<li><a href="#">Quis accumsan lorem</a></li>
+								<li><a href="#">Suspendisse varius ipsum</a></li>
+								<li><a href="#">Eget et amet consequat</a></li>
+							</ul>
+						</div>
+						<div class="3u">
+							<ul class="link-list">
+								<li><a href="#">Quis accumsan lorem</a></li>
+								<li><a href="#">Sed neque nisi consequat</a></li>
+								<li><a href="#">Eget et amet consequat</a></li>
+								<li><a href="#">Dapibus sed mattis blandit</a></li>
+								<li><a href="#">Vitae magna sed dolore</a></li>
+							</ul>
+						</div>
+					</section>
+				
+				</div>
+				<div class="4u">
+
+					<section>
+						<h2>Something of interest</h2>
+						<p>Duis neque nisi, dapibus sed mattis quis, rutrum accumsan sed. 
+						Suspendisse eu varius nibh. Suspendisse vitae magna eget odio amet 
+						mollis justo facilisis quis. Sed sagittis mauris amet tellus gravida
+						lorem ipsum dolor sit amet consequat blandit.</p>
+						<footer class="controls">
+							<a href="#" class="button">Oh, please continue ....</a>
+						</footer>
+					</section>
+
+				</div>
+				<div class="12u-first">
+
+					<div id="copyright">
+						&copy; 2012 An Untitled Website. Design by <a href="http://nodethirtythree.com/">nodethirtythree</a> + <a href="http://www.freecsstemplates.org/">FCT</a>. Photos by <a href="http://fotogrph.com/">Fotogrph</a>.
+					</div>
+
+				</div>
+			</div>
+		</div>
+	<!-- ********************************************************* -->
+	</body>
+</html>
+
+@section scripts {
+    <!--Script references. -->
+    <!--The jQuery library are referenced by default in _Layout.cshtml. -->
+    <!--Reference the SignalR library. -->
+    <script src="~/Scripts/jquery.signalR-2.1.0.js"></script>
+    <!--Reference the autogenerated SignalR hub script. -->
+    <script src="~/signalr/hubs"></script>
+
+    <!--SignalR script to update the ChatApp page and send messages.-->
+    <script>
+        $(function () {
+
+            // Reference the auto-generated proxy for the hub. 
+            var chat = $.connection.chatHub;
+
+            // Create a function that the hub can call back
+            // to display messages.
+            chat.client.addNewMessageToPage = function (name, message) {
+                // Add the user message to the page.
+                $('#messageList').append('<li><strong>'
+                    + encodeHtml(name) + '</strong>: '
+                    + encodeHtml(message) + '</li>');
+            };
+
+            
+            // Set initial focus to message input box. 
+            $('#messageBox').focus();
+
+            // Start the connection.
+            $.connection.hub.start().done(function () {
+                $('#messageBox').keypress(function(e) {
+                    var code = (e.keyCode ? e.keyCode : e.which);
+                    if (code == 13) {
+                        // Call the Send method on the hub.
+                        chat.server.send($('#userName').text()
+                            , $('#messageBox').val());
+                        // Clear text box and reset focus for next comment.
+                        $('#messageBox').val('').focus();
+                    }
+                });
+            });
+        });
+
+        // This optional function html-encodes messages
+        // for display in the page.
+        function encodeHtml(value) {
+            var ecValue = $('<div />').text(value).html();
+            return ecValue;
+        }
+    </script>
+}
+

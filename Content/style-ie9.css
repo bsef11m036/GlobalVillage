@@ -1,0 +1,57 @@
+/*
+	Minimaxing 1.0 by nodethirtythree design
+	http://nodethirtythree.com | @nodethirtythree
+	Released under the Creative Commons Attribution 3.0 license (nodethirtythree.com/license)
+*/
+
+.button {
+	background-image: url('images/button.svg');
+}
+
+.button:hover {
+	background-image: url('images/button-hover.svg');
+}
+
+#header-wrapper {
+	background-image: url('images/header-wrapper.svg');
+}
+
+#header {
+	background-image: url('images/header.svg');
+}
+
+	#header nav a.current-page-item {
+		background-image: url('images/nav-a.svg');
+	}
+
+	#header nav a:hover {
+		background-image: url('images/nav-a-hover.svg');
+	}
+    #chatwindow{
+    position:relative;
+    height:400px; /* if you wish to use all of your space, use
+    position:absolute; top:0;left:0;right:0;bottom:0;
+    or drop the chatdwindow div */
+}
+#messagewindow, #inputcontainer{
+    position:absolute;
+    left:0;
+    right:0;
+    border:1px solid #000;
+}
+#messagewindow{   
+    overflow:auto;
+    top:0;
+    bottom:3em;
+}
+#inputcontainer{
+    display:block;
+    bottom:0;
+    height:1em;
+    padding:.5em;
+    margin-top:1em;
+}
+
+#inputcontainer > p{
+    margin:0;
+}

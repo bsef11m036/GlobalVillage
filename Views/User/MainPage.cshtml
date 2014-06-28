@@ -1,0 +1,38 @@
+﻿@{
+    Layout = "~/Views/Shared/LayoutPage2.cshtml";
+}
+@model EAD.Models.User
+<div id="main">
+  		<div class="5grid">
+				<div class="main-row">
+					<div class="8u-first">
+						
+						<section class="left-content">
+							<h2>Global Village</h2>
+							<p>It is a free social webite providing the facility to user to find fnew friends and chat with them. This site has quite intersting features like other sites as facebook and twitter etc. You can easily find Friends and add them to your profile.</p>
+                            <img src="~/Content/images/logo.jpg" alt="Hello Leo" class="left"/>						
+                            </section>
+					
+					</div>
+					<div class="4u">
+
+						<section>
+							<h2>Your Friends</h2>
+							<ul class="small-image-list">
+								@foreach(var i in ViewBag.x)
+                                {
+                                    <li>
+									    <a href=@Url.Action("GetFImage", "User", new { uName = i.UserName }) rel="">
+                                            <img src=@Url.Action("GetFImage", "User", new { uName = i.UserName }) alt="" class="left" /></a>
+									    <a href="ChatBox"><h4>@i.UserName</h4></a>
+									    
+								    </li>
+                                 }
+							</ul>
+						</section>
+					    
+					      
+					</div>
+				</div>
+			</div>
+		</div>

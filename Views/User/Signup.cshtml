@@ -1,0 +1,11 @@
+﻿@{
+    Layout = "~/Views/Shared/LayoutPage.cshtml";
+}
+@if(ViewBag.x==true)
+{
+    <h2>You Have Successfully Sign-Up now click @Html.ActionLink("Click Me","Index", "Login" ) to Login</h2>
+}
+else
+{
+    <h2 hidden>You have not entered correct data click @Html.ActionLink("Click Me","Index", "Login" ) to Sign-</h2>
+} 

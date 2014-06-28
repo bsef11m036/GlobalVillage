@@ -1,0 +1,97 @@
+﻿@{
+    Layout = "~/Views/Shared/LayoutPage2.cshtml";
+}
+
+
+@model EAD.Controllers.Users
+<script>
+    $(".click").live("click", function (event) {
+        var button = $(this).data("clicked", $(event.target));
+        var a = button.val();
+        if (a == "Add Friend") {
+            var user = button.parent().children("h4").text();
+            $.getJSON("/User/AddFriend?fName=" + user, function (data) {
+                if (data) {
+                    button.val("Friend");
+                }
+                else {
+                    alert("Already your friend");
+                }
+            });
+        }
+    }
+    );
+        function searchFriend() {
+            var s = document.getElementById("searchF").value;
+            if (s != "") {
+                $.getJSON("/User/SearchFriends?uName=" + s, function (data) {
+                    if (data) {
+                        $.each(data, function (i, val) {
+                            var a = document.createElement("li");
+                            var b = document.createElement("a");
+                            b.setAttribute("href", "#");
+                            var c = document.createElement("img");
+                            c.setAttribute("src", val.ProfilePicture);
+                            c.setAttribute("class", "left");
+                            var d = document.createElement("h4");
+                            var text = document.createTextNode(val.UserName);
+                            var e = document.createElement("input");
+                            e.setAttribute("type", "button");
+                            e.setAttribute("class","click");
+                            e.setAttribute("value", "Add Friend");
+
+                            d.appendChild(text);
+                            b.appendChild(c);
+                            a.appendChild(b);
+                            a.appendChild(d);
+                            a.appendChild(e);
+                            document.getElementById("list").appendChild(a);
+                           
+                        });
+                    }
+                    else {
+                        
+                    }
+                });
+            }
+        }
+</script>
+<h2 >Find Friends</h2>
+    <table >
+        <tr>
+            <td>
+                &nbsp;&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            </td>
+            <td>
+                &nbsp;&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            </td>
+            <td>
+                <span class="text-muted">Search Friends</span>
+            </td>
+            <td>
+                &nbsp;&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            </td>
+            <td>
+                <input type="text" id="searchF" class="text-primary" placeholder="Search" required/>
+            </td>
+            <td>
+                <div id="result"></div>
+            </td>
+            <td>
+                &nbsp;&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            </td>
+            <td>
+                <input type="button" class="button" onclick="searchFriend()" value="Search"/>
+            </td>
+        </tr>
+    </table>
+<p id="p1"></p>            
+<br>
+<br>
+             <section>
+				<h2 >Who are you guys?</h2>
+				<ul class="small-image-list" id="list">
+					
+				</ul>
+			</section>
+					
