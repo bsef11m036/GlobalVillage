@@ -175,14 +175,14 @@
                                 <div>
 							
                                 @Html.LabelFor(model => model.LastName)
-                                @Html.TextBoxFor(x => x.LastName, new { placeholder = "First Name", required = "" })
+                                @Html.TextBoxFor(x => x.LastName, new { placeholder = "Last Name", required = "" })
                                 @Html.ValidationMessageFor(model => model.LastName)
                                     <span class="error">This is an error</span>
                                 </div>
                                 
                                 <div>
 							    @Html.LabelFor(model => model.Password)
-                                @Html.TextBoxFor(x => x.Password, new { type = "password", placeholder = "First Name", required = "" })
+                                @Html.TextBoxFor(x => x.Password, new { type = "password", placeholder = "Password", required = "" })
                                 @Html.ValidationMessageFor(model => model.Password)
                                     <span class="error">This is an error</span>
                                 </div>
