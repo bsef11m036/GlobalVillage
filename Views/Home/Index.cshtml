@@ -198,7 +198,7 @@
 
                                 <div>
                                     @Html.LabelFor(model => model.EMail)
-                                    @Html.TextBoxFor(x => x.EMail, new { id = "email", placeholder = "Email", onblur = "f2()", required = "" })
+                                    @Html.TextBoxFor(x => x.EMail, new {type="email",id = "email", placeholder = "Email", onblur = "f2()", required = "" })
                                     @Html.ValidationMessageFor(model => model.EMail)
     								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span id="result1"></span>
 
